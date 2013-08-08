@@ -10,34 +10,24 @@ Roadmap
 2. Build Go on FreeBSD and DragonFly BSD at the same time.
 3. Compare differences and fix problems in DragonFly BSD.
 
-Reverse Progress Log
-------------
+Setup
+-----
 
-* dfly: Rinse. Repeat. Except use git clone http://github.com/varialus/godfly.git .
-* FreeBSD: Rinse. Repeat. Except use git clone http://github.com/varialus/godfly.git .
-* dfly: Currently fails quickly.
-* FreeBSD: ALL TESTS PASS
-* ./all.bash
-* cd $HOME/go/src/
-* dfly: hg clone https://go.googlecode.com/hg/ $GOROOT
-* FreeBSD: hg clone https://go.googlecode.com/hg/ $GOROOT
-* export GOBIN=$HOME/bin
-* export GOOS=freebsd
-* export GOARCH=amd64
-* export GOROOT=$HOME/go
-* mkdir ~/bin
-* mkdir ~/go
-* bash
-* Just to be safe, log out and log back in.
-* FreeBSD: pkg_add -r git
-* dfly: pkg_radd mercurial
-* FreeBSD: pkg_add -r mercurial
-* dfly: pkg_radd bison
-* FreeBSD: pkg_add -r bison
-* dfly: pkg_radd gmake
-* FreeBSD: pkg_add -r gmake
-* dfly: pkg_radd bash
-* FreeBSD: pkg_add -r bash
-* I'm currently using the build instructions at the following address. http://forums.freebsd.org/showpost.php?p=50843&postcount=23
-* Log in as root.
-* Install the latest version of FreeBSD and DragonFly BSD and then take a snapshot.
+1. Install the latest version of FreeBSD and DragonFly BSD.
+2. On FreeBSD use pkg_add -r package_name to install bash, gmake, bison and git.
+3. On DragonFly BSD use pkg_radd package_name to install bash, gmake and bison.
+4. bash
+5. mkdir ~/go
+6. mkdir ~/bin
+7. export GOROOT=$HOME/go
+8. export GOARCH=amd64
+9. export GOOS=freebsd or export GOOS=dragonflybsd
+10. cd go
+11. git clone http://github.com/varialus/godfly.git .
+12. cd src
+13. ./all.bash
+14. Fix errors and push fixes to github.com.
+15. cd ..
+16. git clean -f
+17. git pull
+18. Repeat steps 12 through 17.
