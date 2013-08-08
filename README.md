@@ -32,4 +32,4 @@ Setup
 17. rm -r ~/bin
 18. mkdir ~/bin
 19. git pull
-20. Repeat steps 12 through 17.
+20. Repeat steps 12 through 19.
