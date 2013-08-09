@@ -33,3 +33,9 @@ Setup
 18. mkdir ~/bin
 19. git pull
 20. Repeat steps 12 through 19.
+
+Notes
+-----
+
+* Used FreeBSD specific code as a template.
+* Where FreeBSD code doesn't work, used NetBSD code with adjustments to make it work.
