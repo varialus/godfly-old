@@ -39,3 +39,17 @@ Notes
 
 * Used FreeBSD specific code as a template.
 * Where FreeBSD code doesn't work, used NetBSD code with adjustments to make it work.
+
+Recent Compilation Error
+------------------------
+
+\# Building C bootstrap tool.</br>
+cmd/dist</br>
+\# Building compilers and Go bootstrap tool for host, dragonflybsd/amd64</br>
+lib9</br>
+libbio</br>
+...</br>
+pkg/go/build</br>
+cmd/go</br>
+./make.bash: line 141: 18147 Segmentation fault: 11 (core dumped) "$GOTOOLDIR"/go_bootstrap clean -i std</br>
+bash-4.2# Aug  9 00:44:55  kernel: pid 18147 (go_bootstrap), uid 0: exited on signal 11 (core )
