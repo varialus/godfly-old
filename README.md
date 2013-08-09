@@ -3,6 +3,20 @@ godfly
 
 Golang on DragonFly BSD
 
+32-bit DragonFly BSD Linux Go Emulation
+---------------------------------------
+
+1. Instal 32-bit DragonFly BSD
+2. Log in as root
+3. kldload linux
+4. pkg_radd suse_base
+5. ln -s /usr/pkg/emul /compat
+6. curl http://go.googlecode.com/files/go1.1.1.linux-386.tar.gz -O
+7. mkdir /compat/linux/usr/local
+8. tar -C /compat/linux/usr/local -xzf go1.1.1.linux-386.tar.gz
+9. brandelf -t Linux /compat/linux/usr/local/go/bin/go
+10. /compat/linux/usr/local/go/bin/go version
+
 Roadmap
 -------
 
@@ -51,5 +65,5 @@ libbio<br />
 ...<br />
 pkg/go/build<br />
 cmd/go<br />
-./make.bash: line 141: 18147 Segmentation fault: 11 (core dumped) "$GOTOOLDIR"/go_bootstrap clean -i std<br/>
+./make.bash: line 141: 18147 Segmentation fault: 11 (core dumped) "$GOTOOLDIR"/go_bootstrap clean -i std<br />
 bash-4.2# Aug  9 00:44:55  kernel: pid 18147 (go_bootstrap), uid 0: exited on signal 11 (core )
