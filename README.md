@@ -3,6 +3,58 @@ godfly
 
 Golang on DragonFly BSD
 
+Recent Error
+-------------
+
+### High Level 64-bit
+
+\# Building C bootstrap tool.<br />
+cmd/dist<br />
+\# Building compilers and Go bootstrap tool for host, dragonflybsd/amd64<br />
+lib9<br />
+libbio<br />
+...<br />
+pkg/go/build<br />
+cmd/go<br />
+./make.bash: line 141: 19396 Segmentation fault: 11 (core dumped) "$GOTOOLDIR"/go_bootstrap clean -i std<br />
+bash-4.2# Aug  11 16:32:21  kernel: pid 19396 (go_bootstrap), uid 0: exited on signal 11 (core dumped)
+
+### Low Level 64-bit
+
+(gdb) run<br />
+Starting program: /root/go/pkg/tool/dragonflybsd_amd64/go_bootstrap<br />
+<br />
+Program received signal SIGSEGV, Segmentation fault.<br />
+runtime.settls () at /root/go/src/pkg/runtime/sys_dragonflybsd.s:252<br />
+252             MOVL    $0xf1, 0xf1  // crash
+
+### High Level 32-bit
+
+\# Building C bootstrap tool.<br />
+cmd/dist<br />
+\# Building compilers and Go bootstrap tool for host, dragonflybsd/386<br />
+lib9<br />
+libbio<br />
+...<br />
+pkg/go/build<br />
+cmd/go<br />
+./make.bash: line 141: 3735 Bus error: 10           (core dumped) "$GOTOOLDIR"/go_bootstrap clean -i std<br />
+bash-4.2# Aug 11 16:32:28 df3 kernel: pid 3735 (go_bootstrap), uid 0: exited on signal 10 (core dumped)
+
+### Low Level 32-bit
+
+(gdb) run<br />
+Starting program: /root/go/pkg/tool/dragonflybsd_386/go_bootstrap<br />
+<br />
+Program received signal SIGBUS, Bus error.<br />
+runtime.setldt (address=void)
+    at /root/go/src/pkg/runtime/sys_dragonflybsd_386.s:299<br />
+299             MOVL    AX, GS
+
+### Notes
+
+Conversation between Snert and dho at http://go-lang.cat-v.org/irc-logs/go-nuts/2009-11-19
+
 Go Linux Emulation on 32-bit DragonFly BSD
 ------------------------------------------
 
@@ -50,17 +102,9 @@ Notes
 
 * http://golang.org/doc/install/source
 * Used FreeBSD specific code as a template.
-* Where FreeBSD code doesn't work, used NetBSD code with adjustments to make it work.
 
-Code Generation Notes
----------------------
-
-* Comments within src/pkg/syscall/mk*
-* Syntax of call to mktypes within src/pkg/syscall/mkall.sh
-* GOARCH=amd64 go tool cgo -cdefs defs_dragonflybsd.go >defs_dragonflybsd_amd64.h
-
-Files Needing Auto-Generation
------------------------------
+Auto-Generated Files Needing Git Commit
+---------------------------------------
 
 * src/pkg/runtime/defs_dragonflybsd_386.h
 * src/pkg/runtime/defs_dragonflybsd_amd64.h
@@ -94,55 +138,3 @@ Files Needing Manual Review
 * src/pkg/syscall/syscall_dragonflybsd_386.go
 * src/pkg/syscall/syscall_dragonflybsd_amd64.go
 * Any Other Copied Manually-Written-Code
-
-Recent Error
-------------
-
-### Notes
-
-Conversation between Snert and dho at http://go-lang.cat-v.org/irc-logs/go-nuts/2009-11-19
-
-### High Level 64-bit
-
-\# Building C bootstrap tool.<br />
-cmd/dist<br />
-\# Building compilers and Go bootstrap tool for host, dragonflybsd/amd64<br />
-lib9<br />
-libbio<br />
-...<br />
-pkg/go/build<br />
-cmd/go<br />
-./make.bash: line 141: 18147 Segmentation fault: 11 (core dumped) "$GOTOOLDIR"/go_bootstrap clean -i std<br />
-bash-4.2# Aug  9 00:44:55  kernel: pid 18147 (go_bootstrap), uid 0: exited on signal 11 (core )
-
-### Low Level 64-bit
-
-(gdb) run<br />
-Starting program: /root/go/pkg/tool/dragonflybsd_amd64/go_bootstrap<br />
-<br />
-Program received signal SIGSEGV, Segmentation fault.<br />
-runtime.settls () at /root/go/src/pkg/runtime/sys_dragonflybsd_amd64.s:242<br />
-242             MOVL    $0xf1, 0xf1  // crash
-
-### High Level 32-bit
-
-\# Building C bootstrap tool.<br />
-cmd/dist<br />
-\# Building compilers and Go bootstrap tool for host, dragonflybsd/386<br />
-lib9<br />
-libbio<br />
-...<br />
-pkg/go/build<br />
-cmd/go<br />
-./make.bash: line 141: 24655 Bus error: 10           (core dumped) "$GOTOOLDIR"/go_bootstrap clean -i std<br />
-bash-4.2# Aug 10 01:18:20 df3 kernel: pid 24655 (go_bootstrap), uid 0: exited on signal 10 (core dumped)
-
-### Low Level 32-bit
-
-(gdb) run<br />
-Starting program: /root/go/pkg/tool/dragonflybsd_386/go_bootstrap<br />
-<br />
-Program received signal SIGBUS, Bus error.<br />
-runtime.setldt (address=void)<br />
-    at /root/go/src/pkg/runtime/sys_dragonflybsd_386.s:299<br />
-299             MOVW    AX, GS
