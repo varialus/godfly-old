@@ -53,7 +53,15 @@ runtime.setldt (address=void)
 
 ### Notes
 
-Conversation between Snert and dho at http://go-lang.cat-v.org/irc-logs/go-nuts/2009-11-19
+* Conversation between Snert and dho at http://go-lang.cat-v.org/irc-logs/go-nuts/2009-11-19
+* http://www.dragonflybsd.org/docs/user/GlossaryOfTerms/
+* http://www.dragonflybsd.org/features/
+* http://gitweb.dragonflybsd.org/dragonfly.git/blob/HEAD:/sys/cpu/i386/include/tls.h
+* http://gitweb.dragonflybsd.org/dragonfly.git/blob/HEAD:/sys/cpu/x86_64/include/tls.h
+* http://gitweb.dragonflybsd.org/dragonfly.git/blob/HEAD:/sys/sys/tls.h
+* http://gitweb.dragonflybsd.org/dragonfly.git/blob/HEAD:/sys/platform/pc64/x86_64/tls.c
+* http://gitweb.dragonflybsd.org/dragonfly.git/blob/HEAD:/sys/platform/pc32/i386/tls.c
+* http://www.dragonflybsd.org/docs/developer/Locking_and_Synchronization/
 
 Go Linux Emulation on 32-bit DragonFly BSD
 ------------------------------------------
