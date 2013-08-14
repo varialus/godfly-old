@@ -53,6 +53,7 @@ runtime.setldt (address=void)
 
 ### Notes
 
+* Started assembly language documentation in src/pkg/runtime/sys_dragonflybsd_amd64.s
 * Conversation between Snert and dho at http://go-lang.cat-v.org/irc-logs/go-nuts/2009-11-19
 * http://www.dragonflybsd.org/docs/user/GlossaryOfTerms/
 * http://www.dragonflybsd.org/features/
