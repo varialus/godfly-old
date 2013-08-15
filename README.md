@@ -6,15 +6,7 @@ Golang on DragonFly BSD
 Recent Error
 ------------
 
-### Adding DragonFly BSD File Ruins FreeBSD Build
-
-* Without dfly files at commit 59f1a0dfbf3969ff243ae878ae177ad045e3277b
-* With the following dfly files at commit a31cdc9739e6227b2406013d4b4983cb70026c72
-* src/pkg/syscall/zsyscall_dragonflybsd_386.go
-* src/pkg/syscall/zsyscall_dragonflybsd_amd64.go
-* I'm going to try adding these file before I made any other changes to see if it still ruins the FreeBSD build.
-
-### High Level 64-bit (on or shortly before commit c227a39ce64097e3a0a80d1dd9422d9de491fb58)
+### High Level 64-bit
 
 \# Building C bootstrap tool.<br />
 cmd/dist<br />
@@ -27,7 +19,7 @@ cmd/go<br />
 ./make.bash: line 141: 19396 Segmentation fault: 11 (core dumped) "$GOTOOLDIR"/go_bootstrap clean -i std<br />
 bash-4.2# Aug  11 16:32:21  kernel: pid 19396 (go_bootstrap), uid 0: exited on signal 11 (core dumped)
 
-### Low Level 64-bit (on or shortly before commit c227a39ce64097e3a0a80d1dd9422d9de491fb58)
+### Low Level 64-bit
 
 (gdb) run<br />
 Starting program: /root/go/pkg/tool/dragonflybsd_amd64/go_bootstrap<br />
@@ -36,7 +28,7 @@ Program received signal SIGSEGV, Segmentation fault.<br />
 runtime.settls () at /root/go/src/pkg/runtime/sys_dragonflybsd.s:252<br />
 252             MOVL    $0xf1, 0xf1  // crash
 
-### High Level 32-bit (on or shortly before commit c227a39ce64097e3a0a80d1dd9422d9de491fb58)
+### High Level 32-bit
 
 \# Building C bootstrap tool.<br />
 cmd/dist<br />
@@ -49,7 +41,7 @@ cmd/go<br />
 ./make.bash: line 141: 3735 Bus error: 10           (core dumped) "$GOTOOLDIR"/go_bootstrap clean -i std<br />
 bash-4.2# Aug 11 16:32:28 df3 kernel: pid 3735 (go_bootstrap), uid 0: exited on signal 10 (core dumped)
 
-### Low Level 32-bit (on or shortly before commit c227a39ce64097e3a0a80d1dd9422d9de491fb58)
+### Low Level 32-bit
 
 (gdb) run<br />
 Starting program: /root/go/pkg/tool/dragonflybsd_386/go_bootstrap<br />
@@ -59,7 +51,7 @@ runtime.setldt (address=void)
     at /root/go/src/pkg/runtime/sys_dragonflybsd_386.s:299<br />
 299             MOVL    AX, GS
 
-### Notes (on or shortly before commit c227a39ce64097e3a0a80d1dd9422d9de491fb58)
+### Notes
 
 * Very related discussion. http://comments.gmane.org/gmane.comp.lang.go.devel/30746
 * Started assembly language documentation in src/pkg/runtime/sys_dragonflybsd_amd64.s
