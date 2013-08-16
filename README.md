@@ -53,6 +53,7 @@ runtime.setldt (address=void)
 
 ### Notes
 
+* My plea for help. https://groups.google.com/forum/#!topic/golang-dev/bwF5jTJmybM
 * Very related discussion. http://comments.gmane.org/gmane.comp.lang.go.devel/30746
 * Started assembly language documentation in src/pkg/runtime/sys_dragonflybsd_amd64.s
 * Conversation between Snert and dho at http://go-lang.cat-v.org/irc-logs/go-nuts/2009-11-19
