@@ -6,7 +6,7 @@ Golang on DragonFly BSD
 Recent Error
 ------------
 
-### High Level 64-bit
+### Build Error
 
 \# Building C bootstrap tool.<br />
 cmd/dist<br />
@@ -19,37 +19,36 @@ cmd/go<br />
 ./make.bash: line 141: 19396 Segmentation fault: 11 (core dumped) "$GOTOOLDIR"/go_bootstrap clean -i std<br />
 bash-4.2# Aug  11 16:32:21  kernel: pid 19396 (go_bootstrap), uid 0: exited on signal 11 (core dumped)
 
-### Low Level 64-bit
+### gdb
 
-(gdb) run<br />
+(gdb) run \[clean -i std\]<br />
 Starting program: /root/go/pkg/tool/dragonflybsd_amd64/go_bootstrap<br />
 <br />
 Program received signal SIGSEGV, Segmentation fault.<br />
-runtime.settls () at /root/go/src/pkg/runtime/sys_dragonflybsd.s:252<br />
-252             MOVL    $0xf1, 0xf1  // crash
+runtime.settls () at /root/go/src/pkg/runtime/sys_dragonflybsd.s:260<br />
+260             MOVL    $0xf1, 0xf1  // crash<br />
+(gdb) bt<br />
+\#0  runtime.settls () at /root/go/src/pkg/runtime/sys_dragonfly_amd64.s:260<br />
+\#1  0x000000000044b006 in _rt0_go ()<br />
+    at /root/go/src/pkg/runtime/asm_amd64.s:58<br />
+\#2  0x0000000000000000 in ?? ()<br />
+(gdb)
 
-### High Level 32-bit
+### truss
 
-\# Building C bootstrap tool.<br />
-cmd/dist<br />
-\# Building compilers and Go bootstrap tool for host, dragonflybsd/386<br />
-lib9<br />
-libbio<br />
-...<br />
-pkg/go/build<br />
-cmd/go<br />
-./make.bash: line 141: 3735 Bus error: 10           (core dumped) "$GOTOOLDIR"/go_bootstrap clean -i std<br />
-bash-4.2# Aug 11 16:32:28 df3 kernel: pid 3735 (go_bootstrap), uid 0: exited on signal 10 (core dumped)
-
-### Low Level 32-bit
-
-(gdb) run<br />
-Starting program: /root/go/pkg/tool/dragonflybsd_386/go_bootstrap<br />
-<br />
-Program received signal SIGBUS, Bus error.<br />
-runtime.setldt (address=void)
-    at /root/go/src/pkg/runtime/sys_dragonflybsd_386.s:299<br />
-299             MOVL    AX, GS
+bash-4.2# truss ../pkg/tool/dragonfly_amd64/go_bootstrap clean -i std<br />
+open("/proc/curproc/mem",0x1,0400032600400)      = 3 (0x3)<br />
+fcntl(0x3,0x2,0x1)                               = 0 (0x0)<br />
+ioctl(3,PIOCBIS,0x21)                            = 0 (0x0)<br />
+ioctl(3,PIOCSFL,0x1)                             = 0 (0x0)<br />
+execve(<missing argument>,<missing argument>,<missing argument>)sysarch(0x81,0x7ffffffff640)<br />
+SIGNAL 11<br />
+SIGNAL 11<br />
+Process stopped because of:  16<br />
+process exit, rval = 139<br />
+Segmentation fault: 11<br />
+bash-4.2# Aug 17 07:37:51  kernel: pid 22655 (go_bootstrap), uid 0: exited on signal 11 (core dumped)<br />
+Aug 17 07:37:51  kernel: pid 22654 (truss), uid 0: exited on signal 11
 
 ### Notes
 
