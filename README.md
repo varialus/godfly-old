@@ -7,7 +7,8 @@ Status
 ------
 
 * Go code can be compiled and run!
-* The go tool gets built and tests start running.
+* The go tool gets built.
+* Tests finish running although some are temporarily disabled.
 * Thanks to dho, joris and everyone else who helped!
 
 Roadmap
