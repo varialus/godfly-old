@@ -10,6 +10,7 @@ Status
 * The go tool gets built.
 * Tests finish running although some are temporarily disabled.
 * Thanks to dho, joris and everyone else who helped!
+* ---- Test Results ----
 * ???? cmd/cgo
 * pass cmd/fix
 * pass cmd/go
@@ -28,14 +29,14 @@ Status
 * pass container/ring
 * ???? crypto
 * pass crypto/aes
-* fail crypto/cipher
+* pass crypto/cipher
 * pass crypto/des
-* ???? crypto/da
-* fail crypto/ecdsa
+* ???? crypto/dsa
+* pass crypto/ecdsa
 * ???? crypto/elliptic
 * pass crypto/hmac
 * pass crypto/md5
-* fail crypto/rand
+* pass crypto/rand
 * pass crypto/rc4
 * ???? crypto/rsa
 * pass crypto/sha1
@@ -43,7 +44,7 @@ Status
 * pass crypto/sha512
 * pass crypto/subtle
 * pass crypto/tls
-* fail crypto/x509
+* pass crypto/x509
 * ???? crypto/x509/pkix
 * pass database/sql
 * pass database/sql/driver
@@ -98,8 +99,8 @@ Status
 * ???? math/rand
 * ???? mime
 * ???? mime/multipart
-* fail net
-* fail net/http
+* pass net
+* ???? net/http
 * pass net/http/cgi
 * pass net/http/cookiejar
 * pass net/http/fcgi
@@ -113,7 +114,7 @@ Status
 * pass net/textproto
 * pass net/url
 * fail os
-* fail os/exec
+* pass os/exec
 * pass os/signal
 * pass os/user
 * pass path
@@ -156,27 +157,28 @@ Setup
 
 1. Install the latest version of FreeBSD and DragonFly BSD.
 2. On FreeBSD use pkg_add -r package_name to install bash, gmake, bison and git.
-3. On DragonFly BSD use pkg_radd package_name to install bash, gmake and bison.
-4. bash
-5. mkdir ~/go
-6. mkdir ~/bin
-7. cd go
-8. git clone http://github.com/varialus/godfly.git .
-9. cd src
-10. ./all.bash
-11. Fix errors and push fixes to github.com.
-12. cd ..
-13. git clean -f
-14. rm -r ~/bin
-15. mkdir ~/bin
-16. git pull
-17. Repeat steps 9 through 16.
+3. On DragonFly BSD use pkg_radd package_name to install bash, gmake, bison, and mozilla-rootcerts.
+4. rehash
+5. mkdir -p /etc/openssl/certs
+6. mozilla-rootcerts install
+7. bash
+8. vidcontrol -h 5000
+9. mkdir ~/go
+10. mkdir ~/bin
+11. cd go/
+12. git clone http://github.com/varialus/godfly.git .
+13. cd src/
+14. cd ..;git clean -f;rm -r ~/bin;mkdir ~/bin;git pull;cd src;./all.bash
+15. Fix errors and push fixes to github.com.
+16. Repeat steps 14 and 15.
 
-Notes
------
+Files Needing Revisiting
+------------------------
 
-* http://golang.org/doc/install/source
-* Used FreeBSD specific code as a template.
+* include/u.h
+* src/pkg/syscall/mkall.sh
+* src/pkg/syscall/mkerrors.sh
+* src/pkg/syscall/route_dragonfly.go
 
 Auto-Generated Files Needing Git Commit
 ---------------------------------------
@@ -199,7 +201,7 @@ Go Linux Emulation on 32-bit DragonFly BSD
 1. Instal 32-bit DragonFly BSD
 2. Log in as root
 3. kldload linux
-4. pkg_radd suse_base
+4. pkg_radd suse_base;rehash
 5. ln -s /usr/pkg/emul /compat
 6. curl http://go.googlecode.com/files/go1.1.1.linux-386.tar.gz -O
 7. mkdir /compat/linux/usr/local
