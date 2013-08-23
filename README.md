@@ -35,5 +35,5 @@ Tomorrow or the Day After
 
 * Add system installation instructions.
 * Add per session environment variables.
-* Add go get package, including export GIT_SSL_CAINFO="/etc/ssl/certs/ca-certificates.crt"
-* Add wingo instructions.
+* Add go get wingo instructions, including export GIT_SSL_CAINFO="/etc/ssl/certs/ca-certificates.crt"
+* Add Hello World!
