@@ -57,7 +57,7 @@ There is a problem with cgo, auxiliary C/Go integration, which I'm hoping will b
 18. mkdir ~/go
 19. git clone http://go.googlecode.com/hg/ ~/go/
 20. bash
-21. export CC=clang # Optional. Try both with and without this step.
+21. export CC=clang # Optional
 22. vidcontrol -h 5000;cd ~/go/;git reset --hard;git pull;git checkout upstream;cd ~/go/src/;./all.bash
 
 Improve Instructions
