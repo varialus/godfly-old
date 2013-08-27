@@ -10,9 +10,8 @@ There is a problem with cgo, auxiliary C/Go integration, which I'm hoping will b
 
 ### Status
 
-* No environment variable builds with one malformed elf error between packages testing and testing/iotest toward the end of the build process but it doesn't start the testing phase.
-* GO_LDFLAGS="-linkmode external" builds with 3 warnings that runtime/cgo.a not found and 23 failed tests including 20 malformed elf erors and one segmentation fault.
-* CGO_LDFLAGS="-linkmode external" builds with one error that prints "# runtime/cgo \n gcc(or clang): error: external: No such file or directory" between cmd/gofmt and cmd/yacc during the third build phase, but it doesn't start the testing phase.
+* Working cgo. https://codereview.appspot.com/13213043/
+* Discussion of proper fix. https://groups.google.com/d/msg/golang-dev/O2ALUcNCTAQ/GhnnMguNFWIJ
 
 ### Notes
 
