@@ -40,7 +40,7 @@ There is a problem with cgo, auxiliary C/Go integration, which I'm hoping will b
 16. shutdown -r now
 17. Log in as User or Root
 18. mkdir ~/go
-19. git clone http://go.googlecode.com/hg/ ~/go/
+19. git clone http://github.com/varialus/godfly.git ~/go/
 20. bash
 21. export CC=clang # Optional. Try both with and without this step.
 22. export GO_LDFLAGS="-linkmode external";vidcontrol -h 5000;cd ~/go/;git fetch origin cgo;git reset --hard FETCH_HEAD;git clean -df;cd ~/go/src/;./all.bash
@@ -69,7 +69,7 @@ There is a problem with cgo, auxiliary C/Go integration, which I'm hoping will b
 16. shutdown -r now
 17. Log in as User or Root
 18. mkdir ~/go
-19. git clone http://go.googlecode.com/hg/ ~/go/
+19. git clone http://github.com/varialus/godfly.git ~/go/
 20. bash
 21. export CC=clang # Optional
 22. vidcontrol -h 5000;cd ~/go/;git fetch origin upstream;git reset --hard FETCH_HEAD;git clean -df;cd ~/go/src/;./all.bash
