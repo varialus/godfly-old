@@ -10,8 +10,9 @@ There is a problem with cgo, auxiliary C/Go integration, which I'm hoping will b
 
 ### Status
 
-* Discussion of proper fix. https://groups.google.com/d/msg/golang-dev/O2ALUcNCTAQ/GhnnMguNFWIJ
+* Error description needed. Help welcome. https://groups.google.com/d/msg/golang-dev/O2ALUcNCTAQ/K_3mus822VkJ
 * Review of my fix. https://codereview.appspot.com/13247046/
+* Discussion of proper fix. https://groups.google.com/d/msg/golang-dev/O2ALUcNCTAQ/GhnnMguNFWIJ
 
 ### Notes
 
