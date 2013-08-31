@@ -11,7 +11,7 @@ There is a problem with cgo, auxiliary C/Go integration, which I'm hoping will b
 ### Status
 
 * Discussion of proper fix. https://groups.google.com/d/msg/golang-dev/O2ALUcNCTAQ/GhnnMguNFWIJ
-* My simple proper fix. https://codereview.appspot.com/13247046/
+* Review of my fix. https://codereview.appspot.com/13247046/
 
 ### Notes
 
