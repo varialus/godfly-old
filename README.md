@@ -3,16 +3,25 @@ godfly
 
 Golang on DragonFly BSD
 
+### Acknowledgments
+
+* https://github.com/varialus/godfly/branches
+* https://groups.google.com/d/msg/golang-dev/bwF5jTJmybM/SxCaHvRrrT4J
+* https://groups.google.com/d/msg/golang-dev/bwF5jTJmybM/IeF62UpxOX4J
+* https://groups.google.com/d/msg/golang-dev/bwF5jTJmybM/g_xKnJ5P1EoJ
+* https://groups.google.com/d/msg/golang-dev/bwF5jTJmybM/2lCZo4DM9VIJ
+* https://code.google.com/p/go/source/detail?r=fb7526b2f6d838cfab4ebfd2fe107c3aa6cd964b
+
 Work on cgo
 -----------
 
-There is a problem with cgo, auxiliary C/Go integration, which I'm hoping will be fixed and pushed upstream with plenty of time to review before the Go 1.2 freeze which is scheduled for September 1st.
+There is a problem with cgo, auxiliary C/Go integration, which I'm hoping will be fixed and pushed upstream with plenty of time to review before the target release date of Go 1.2 on the 1st of December 2013.
 
 ### Status
 
 * Error description needed. Help welcome. https://groups.google.com/d/msg/golang-dev/O2ALUcNCTAQ/K_3mus822VkJ
 * Review of my fix. https://codereview.appspot.com/13247046/
-* Discussion of proper fix. https://groups.google.com/d/msg/golang-dev/O2ALUcNCTAQ/GhnnMguNFWIJ
+* Discussion of proper fixes. https://groups.google.com/d/msg/golang-dev/O2ALUcNCTAQ/GhnnMguNFWIJ
 
 ### Notes
 
